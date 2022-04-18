@@ -1,16 +1,22 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import Colors from '../constants/colors';
 import { CATRGORIES } from '../data/bummy-bata';
 
-const renderGridItem = (itemData) => {
-  return (
-    <View style={styles.grid}>
-      <Text>{itemData.item.title}</Text>
-    </View>
-  );
-};
-
 const CategoriesScreen = (props) => {
+  const renderGridItem = (itemData) => {
+    return (
+      <TouchableOpacity
+        style={styles.grid}
+        onPress={() => {
+          props.navigation.navigate({ routeName: 'CategoryMeals' });
+        }}>
+        <View>
+          <Text>{itemData.item.title}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
   return (
     <FlatList
       keyExtractor={(item, index) => item.id}
@@ -19,6 +25,14 @@ const CategoriesScreen = (props) => {
       numColumns={2}
     />
   );
+};
+
+CategoriesScreen.navigationOptions = {
+  headerTitle: 'MealsCategories',
+  headerStyle: {
+    backgroundColor: Colors.prymaryColor,
+  },
+  headerTintColor: '#fff',
 };
 
 const styles = StyleSheet.create({
