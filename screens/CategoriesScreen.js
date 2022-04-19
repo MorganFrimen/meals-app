@@ -1,22 +1,21 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, FlatList } from 'react-native';
 import Color from '../constants/Colors'
 import { CATRGORIES } from '../data/bummy-bata';
+import CategoryGrydTitle from '../components/CategoreGridTitle';
 
 const CategoriesScreen = (props) => {
   const renderGridItem = (itemData) => {
     return (
-      <TouchableOpacity
-        style={styles.grid}
-        onPress={() => {
-          props.navigation.navigate({ routeName: 'CategoryMeals', params: {
-            categoryId: itemData.item.id
-          } });
-        }}>
-        <View>
-          <Text>{itemData.item.title}</Text>
-        </View>
-      </TouchableOpacity>
+      <CategoryGrydTitle 
+      title={itemData.item.title} 
+      color={itemData.item.color}
+      onSelect={()=>  {
+        props.navigation.navigate({ routeName: 'CategoryMeals', 
+        params: {
+          categoryId: itemData.item.id
+        }});
+      }} />
     );
   };
   return (
@@ -43,11 +42,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  grid: {
-    flex: 1,
-    margin: 16,
-    height: 150,
-  },
+  
 });
 
 export default CategoriesScreen;
