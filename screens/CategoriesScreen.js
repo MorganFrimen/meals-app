@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-import Colors from '../constants/colors';
+import Color from '../constants/Colors'
 import { CATRGORIES } from '../data/bummy-bata';
 
 const CategoriesScreen = (props) => {
@@ -9,7 +9,9 @@ const CategoriesScreen = (props) => {
       <TouchableOpacity
         style={styles.grid}
         onPress={() => {
-          props.navigation.navigate({ routeName: 'CategoryMeals' });
+          props.navigation.navigate({ routeName: 'CategoryMeals', params: {
+            categoryId: itemData.item.id
+          } });
         }}>
         <View>
           <Text>{itemData.item.title}</Text>
@@ -30,7 +32,7 @@ const CategoriesScreen = (props) => {
 CategoriesScreen.navigationOptions = {
   headerTitle: 'Meals Categories',
   headerStyle: {
-    backgroundColor: Colors.prymaryColor,
+    backgroundColor: Color.prymaryColor
   },
   headerTintColor: '#fff',
 };
