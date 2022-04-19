@@ -1,19 +1,19 @@
 import React from 'react';
 import { StyleSheet, FlatList } from 'react-native';
 import Color from '../constants/Colors'
-import { CATRGORIES } from '../data/bummy-bata';
+import { CATEGORIES } from '../data/bummy-bata';
 import CategoryGrydTitle from '../components/CategoreGridTitle';
 
 const CategoriesScreen = (props) => {
   const renderGridItem = (itemData) => {
     return (
       <CategoryGrydTitle 
-      title={itemData.item.title} 
-      color={itemData.item.color}
-      onSelect={()=>  {
-        props.navigation.navigate({ routeName: 'CategoryMeals', 
-        params: {
-          categoryId: itemData.item.id
+        title={itemData.item.title} 
+        color={itemData.item.color}
+        onSelect={()=>  {
+          props.navigation.navigate({ routeName: 'CategoryMeals', 
+          params: {
+            categoryId: itemData.item.id
         }});
       }} />
     );
@@ -21,7 +21,7 @@ const CategoriesScreen = (props) => {
   return (
     <FlatList
       keyExtractor={(item, index) => item.id}
-      data={CATRGORIES}
+      data={CATEGORIES}
       renderItem={renderGridItem}
       numColumns={2}
     />
