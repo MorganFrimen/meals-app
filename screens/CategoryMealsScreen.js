@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 
 import { CATEGORIES, MEALS } from '../data/bummy-bata';
 import Color from '../constants/Colors';
@@ -14,7 +14,14 @@ const CategoryMealScreen = (props) => {
         affordability={itemData.item.affordability}
         complexity={itemData.item.complexity}
         image={itemData.item.imgeUrl}
-        onSelectMeal={() => {}}
+        onSelectMeal={() => {
+          props.navigation.navigate({
+            routeName: 'MealsDetail',
+            params: {
+              mealId: itemData.item.id,
+            },
+          });
+        }}
       />
     );
   };

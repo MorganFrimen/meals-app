@@ -1,10 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
+import { MEALS } from '../data/bummy-bata';
 
 const MealDetalScreen = (props) => {
+  const mealId = props.navigation.getParam('mealId');
+  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
   return (
     <View style={styles.screen}>
-      <Text>The Meal Detal Screen !!</Text>
+      <Text>{selectedMeal.title}</Text>
       <Button
         title="Go back to Categories"
         onPress={() => {
@@ -13,6 +17,14 @@ const MealDetalScreen = (props) => {
       />
     </View>
   );
+};
+
+MealDetalScreen.navigationOptions = (navigationData) => {
+  const mealId = navigationData.navigation.getParam('mealId');
+  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+  return {
+    headerTitle: selectedMeal.title,
+  };
 };
 
 const styles = StyleSheet.create({
